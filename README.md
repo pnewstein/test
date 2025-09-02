@@ -27,42 +27,59 @@ Installation instructions for the miniconda distribution of conda can be found h
 ## Installation
 
 
-
 You can install `napari-3d-counter` via conda
     
-    conda install -c conda-forge napari-3d-counter pyqt
+    conda create -n n3dc-env -c conda-forge -y napari napari-3d-counter pyqt
+    conda activate n3dc-env
+
 
 or pip
 
     pip install napari-3d-counter
 
 
-
-To install latest development version:
-
-    pip install git+https://github.com/pnewstein/napari-3d-counter.git
-
-
 ##  Count3D Usage
 
-First launch napari with the `napari` command or interactively through ipython
-```python
-import napari
-viewer = napari.Viewer()
-```
-Count3D can be launched from the plugin menu of napari, or through the command palette (ctrl shift P)
+1. First launch napari with the `napari` command.
+1. Count3D can be launched from the plugin menu of napari, or through the
+   command palette (ctrl shift P)
+
+This will spawn several [Points Layers](https://napari.org/stable/howtos/layers/points.html):
+##  Count3D Usage
+
+1. First launch napari with the `napari` command.
+1. Count3D can be launched from the plugin menu of napari, or through the
+   command palette (ctrl shift P)
+
+This will spawn several [Points Layers](https://napari.org/stable/howtos/layers/points.html):
+
+#### Point adder
+
+This layer acts as the interface for napari-3d-counter. Any points
+added to this layer are dispatched into the appropriate data layer
+labeled by the GUI.
+
+#### Cell Type N
+
+These are the data layers. The points actually live in these layers,
+and you can edit the style here.
+
+#### out of slice
+
+This contains the x and y of all points in all layers. This may be
+useful to keep track of what regions of the data have been annotated.
 
 
-### Adding a cell
 
-You can add a cell of the currently selected cell type by clicking on the viewer.
+<details>
+
+<summary>Troubleshooting</summary>
 
 - Ensure that `Point adder` layer is selected
 - Ensure that `Add points` tool is selected
 - Click on the viewer where you would like the point to be added
 
-The counter on the current cell type's button will be incremented
-
+</details>
 
 
 https://github.com/pnewstein/napari-3d-counter/assets/30813691/745d495e-1d18-43dd-aa5e-e9ecd835cdae
@@ -174,14 +191,14 @@ viewer.window.add_dock_widget(Count3D(viewer, cell_type_config=cell_type_config)
 
 ### Ingress Points
 
-![Ingress Points](https://private-user-images.githubusercontent.com/30813691/483391238-2b0dc92b-ae14-40e0-8670-0d99f36b3468.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTY0MjQ5MzQsIm5iZiI6MTc1NjQyNDYzNCwicGF0aCI6Ii8zMDgxMzY5MS80ODMzOTEyMzgtMmIwZGM5MmItYWUxNC00MGUwLTg2NzAtMGQ5OWYzNmIzNDY4LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA4MjglMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwODI4VDIzNDM1NFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTM3YjNmZWZkYjIzYjNkNjk4MjFjN2ViN2MxMmRhYTE1NjM5MzNjYmI3NDllZTFjNzdjYjkwNTVjMDBlMGQ4ZmQmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.yBCqQ8659rVP6ReF05gwgKCWcg2HNXS8_JMBSj71o84)
+![Ingress Points](https://github.com/user-attachments/assets/2b0dc92b-ae14-40e0-8670-0d99f36b3468)
 
 This plugin takes a points layer and adds the points to the selected cell_type
 layer. This can be useful if you want to manually count cells after cell identification.
 
 ### Split on Shapes
 
-![Split on Shapes](https://private-user-images.githubusercontent.com/30813691/483390546-0d3c12fc-1347-4226-a9b9-9e34dd50577a.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTY0MjUxMTcsIm5iZiI6MTc1NjQyNDgxNywicGF0aCI6Ii8zMDgxMzY5MS80ODMzOTA1NDYtMGQzYzEyZmMtMTM0Ny00MjI2LWE5YjktOWUzNGRkNTA1NzdhLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA4MjglMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwODI4VDIzNDY1N1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWQwMDQ0MzhjZWU4MzRhNGU3NTNjMGE5YWJmM2QwMjUyMzYwODgwMjBhNDE3YmZhODU4ZjQwNzc2YjY3ZjI2MjMmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.Jx0tx2JHQLH1i1MewdLL5GxJ1LWkESvSPYfjdVpPvOA)
+![Split on Shapes](https://github.com/user-attachments/assets/0d3c12fc-1347-4226-a9b9-9e34dd50577a)
 
 This plugin can be used to subset a cell type into several groups based on their
 x-y location. Simply draw a shape that surrounds your cells (perhaps in a
@@ -189,7 +206,7 @@ segment) and run this plugin to get a list of cells of each type in each shape.
 
 ### Reconstruct Selected
 
-![Reconstruct Selected](https://private-user-images.githubusercontent.com/30813691/483390547-2f629b5a-d976-4add-8c5b-af4fc7e45729.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTY0MjUxMTcsIm5iZiI6MTc1NjQyNDgxNywicGF0aCI6Ii8zMDgxMzY5MS80ODMzOTA1NDctMmY2MjliNWEtZDk3Ni00YWRkLThjNWItYWY0ZmM3ZTQ1NzI5LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA4MjglMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwODI4VDIzNDY1N1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTYzMzM1YjliNjZmN2Y5MjEwYjNhNWFhMDdlNTg0ZmE5ZTA4MzkzM2MzNjhiMzRkNjkxODdmMjJjZDI0MTI0OTkmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.sKU42Ose1VIx1h8PgVH-X01LHndV0vrS1avT6GPJovc)
+![Reconstruct Selected](https://github.com/user-attachments/assets/2f629b5a-d976-4add-8c5b-af4fc7e45729)
 
 One use case of Napari 3D Counter is to visualize a subset of labeled cells.
 For example, automated process label your cells of interest as well as a set of
