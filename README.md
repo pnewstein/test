@@ -1,4 +1,4 @@
-# napari-3d-counter
+# Napari-3D-Counter
 
 [![License GNU GPL v3.0](https://img.shields.io/pypi/l/napari-3d-counter.svg?color=green)](https://github.com/pnewstein/napari-3d-counter/raw/main/LICENSE)
 [![PyPI](https://img.shields.io/pypi/v/napari-3d-counter.svg?color=green)](https://pypi.org/project/napari-3d-counter)
@@ -42,14 +42,7 @@ or pip
 
 1. First launch napari with the `napari` command.
 1. Count3D can be launched from the plugin menu of napari, or through the
-   command palette (ctrl shift P)
-
-This will spawn several [Points Layers](https://napari.org/stable/howtos/layers/points.html):
-##  Count3D Usage
-
-1. First launch napari with the `napari` command.
-1. Count3D can be launched from the plugin menu of napari, or through the
-   command palette (ctrl shift P)
+   command palette (Ctrl+Shift+P)
 
 This will spawn several [Points Layers](https://napari.org/stable/howtos/layers/points.html):
 
@@ -69,7 +62,11 @@ and you can edit the style here.
 This contains the x and y of all points in all layers. This may be
 useful to keep track of what regions of the data have been annotated.
 
+### Adding a cell
 
+You can add a cell of the currently selected cell type by clicking on the
+viewer. The counter on the current cell type's button (on the right side of the
+screen) will be incremented.
 
 <details>
 
@@ -193,7 +190,7 @@ viewer.window.add_dock_widget(Count3D(viewer, cell_type_config=cell_type_config)
 
 ![Ingress Points](https://github.com/user-attachments/assets/2b0dc92b-ae14-40e0-8670-0d99f36b3468)
 
-This plugin takes a points layer and adds the points to the selected cell_type
+This plugin takes a points layer and adds the points to the selected cell type
 layer. This can be useful if you want to manually count cells after cell identification.
 
 ### Split on Shapes
