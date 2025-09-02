@@ -45,19 +45,19 @@ or pip
    command palette (Ctrl+Shift+P)
 
 This will spawn several [Points Layers](https://napari.org/stable/howtos/layers/points.html):
-
-#### Point adder
+    
+##### Point adder
 
 This layer acts as the interface for napari-3d-counter. Any points
 added to this layer are dispatched into the appropriate data layer
 labeled by the GUI.
 
-#### Cell Type N
+##### Cell Type N
 
 These are the data layers. The points actually live in these layers,
 and you can edit the style here.
 
-#### out of slice
+##### out of slice
 
 This contains the x and y of all points in all layers. This may be
 useful to keep track of what regions of the data have been annotated.
